@@ -1,0 +1,55 @@
+.\"                                      Hey, EMACS: -*- nroff -*-
+.\" First parameter, NAME, should be all caps
+.\" Second parameter, SECTION, should be 1-8, maybe w/ subsection
+.\" other parameters are allowed: see man(7), man(1)
+.TH MDNS-SCAN 1 "Jan 21, 2004" "0.4"
+.\" Please adjust this date whenever revising the manpage.
+.\"
+.\" Some roff macros, for reference:
+.\" .nh        disable hyphenation
+.\" .hy        enable hyphenation
+.\" .ad l      left justify
+.\" .ad b      justify to both left and right margins
+.\" .nf        disable filling
+.\" .fi        enable filling
+.\" .br        insert line break
+.\" .sp <n>    insert n+1 empty lines
+.\" for manpage-specific macros, see man(7)
+.SH NAME
+mdns-scan \- Scan for mDNS/DNS-SD services published on the local network
+
+.SH SYNOPSIS
+.B mdns-scan
+
+.SH DESCRIPTION
+mdns-scan is a tool for scanning for mDNS/DNS-SD published services on the
+local network. It issues a mDNS PTR query to the special RR
+_services._dns-sd._udp.local for retrieving a list of all currently registered
+services on the local link.
+
+.SH OPTIONS
+\fBmdns-scan\fP has no commandline options.
+
+.SH NOTES
+mdns-scan is not a good mDNS citizen since it queries continuously for services
+and doesn't implement features like Duplicate Suppression. It is intended for
+usage as a debugging tool only.
+.P
+mdns-scan is incomplete since it doesn't resolve mDNS services for you - it
+just dumps their PTR RRs. To understand these records you need minimal
+knowledge of DNS-SD and how it works.
+.P
+mdns-scan does not terminate on its own behalf. It scans for services
+continuously until the user kills it by pressing C-c.
+.P
+mdns-scan does not rely on a local mDNS responder daemon. It has no
+dependencies besides the GNU libc. It has been tested on Linux only.
+.P
+mdns-scan does NOT scan for local mDNS enabled hosts or A/AAAA RRs, it scans
+for DNS-SD registered services, nothing else.
+
+.SH SEE ALSO
+.BR mDNSResponder(8)
+
+.SH AUTHOR
+\fBmdns-scan\fP has been written by Lennart Poettering <mzqrovna@0pointer.de>
