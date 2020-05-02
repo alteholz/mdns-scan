@@ -252,7 +252,7 @@ int mdns_recv_dns_packet(int fd, struct dns_packet **ret_packet, uint8_t* ret_tt
             }
                      
             if (cmsg == NULL) {
-                fprintf(stderr, "Didn't recieve TTL\n");
+                fprintf(stderr, "Didn't receive TTL\n");
                 goto fail;
             }
 
