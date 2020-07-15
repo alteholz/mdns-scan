@@ -3,6 +3,7 @@ TARFILE=mdns-scan-$(VERSION).tar.gz
 DISTDIR=mdns-scan-$(VERSION)/
 DISTFILES=Makefile mdns-scan.1 dns.c dns.h mdns-scan.c query.c query.h util.h util.c README LICENSE
 CFLAGS=-Wall -W -g -O0 -pipe
+INSTALL=install
 
 mdns-scan: mdns-scan.o dns.o query.o util.o
 	$(CC) -o $@ $^
@@ -18,7 +19,7 @@ $(TARFILE): $(DISTFILES)
 	rm -rf $(DISTDIR)
 
 install:
-	install mdns-scan $(DESTDIR)/usr/bin/mdns-scan
+	$(INSTALL) mdns-scan $(DESTDIR)/usr/bin/mdns-scan
 
 clean:
 	rm -f mdns-scan *.o *.tar.gz
